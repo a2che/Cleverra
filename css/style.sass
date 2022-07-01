@@ -1,0 +1,340 @@
+@import "fonts"
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap')
+$font:		'Montserrat', sans-serif
+//$primary-text-color: 
+//$primary-link-color: 
+$primary-color: #00A5E0
+$primary-text-color: #2c2c2c
+//$primary-shadow :
+//$secondary-shadow:
+$transition-speed: 0.2s
+
+
+
+=flex($justify,$wrap,$ai)
+	display: flex  
+	justify-content: $justify
+	flex-wrap: $wrap
+	align-items: $ai
+.flexSB
+	+flex(space-between,nowrap,center)
+
+=font($family,$style,$weight,$size,$line-height,$color)
+	font-family: $family, sans-serif
+	font-style: $style
+	font-weight: $weight
+	font-size: $size
+	line-height: $line-height
+	color: $color
+
+
+
+=pt100w900($color)
+	+font('Montserrat',normal,900,100px,140%,$color)
+
+=pt40w700($color)
+	+font('Montserrat',normal,700,40px,56px,$color)
+=pt35w600($color)
+	+font('Montserrat',normal,600,35px,140%,$color)
+=pt22w500($color)
+	+font('Montserrat',normal,500,22px,140%,$color)
+=pt18w600($color)
+	+font('Montserrat',normal,600,18px,25px,$color)
+=pt18px500($color)
+	+font('Montserrat',normal,500,18px,25px,$color)
+=pt16w500($color)
+	+font('Montserrat',normal,500,16px,19.5px,$color)
+=pt16w600($color)
+	+font('Montserrat',normal,600,16px,26px,$color)
+=pt14w400($color)
+	+font('Montserrat',normal,400,14px,19.6px,$color)
+
+// button mixin
+=button($background-color,$border,$border-radius)
+
+	background-color: $background-color
+	border-radius: $border-radius
+	border: $border
+// buttons
+.button 
+	transition: $transition-speed
+	+flex(center,nowrap,center)
+	cursor: pointer
+	p
+		cursor: pointer
+	&.primary
+		+button($primary-color, none, 10px)
+		+pt16w600(#fff)
+		&:hover
+			background-color: #45AFD6
+	&.coffee
+		padding: 16px 34px
+	&.get-an-offer
+		padding: 28px
+		+pt16w600(#ffffff)
+
+
+.card
+	position: relative	
+	width: 	100%
+	max-width: 400px
+	height: 80px
+	+flex(space-between, nowrap, stretch)
+	background: #FFFFFF
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.06)
+	border-radius: 8px
+	box-sizing: border-box
+	padding: 10px 20px 10px 32px
+	&::before
+		content: ' '
+		border-left: 4px solid #677FFF
+		border-radius: 16px
+		height: 100%
+		position: absolute	
+		top: 0
+		left: 0
+
+
+
+
+
+
+// adaptivity
+@mixin mediaSize($size) 
+	@if $size == xxl
+		@media (min-width: 1440px)
+			@content 
+
+	@else if $size == xl 
+		@media (max-width: 1440px)
+			@content  
+
+	@else if $size == lg 
+		@media (max-width: 1200px)
+			@content  
+
+	@else if $size == md 
+		@media (max-width: 768px)
+			@content
+			
+	@else if $size == sm 
+		@media (max-width: 576px)
+			@content
+	@else if $size == xs
+		@media (max-width: 375px)
+			@content
+	@else if $size == xxs
+		@media (max-width: 320px)
+			@content
+
+
+.center
+	position: relative
+	@include mediaSize(xxl) 
+		padding-left: calc(50% - 640px)
+		padding-right: calc(50% - 640px)
+
+	@include mediaSize(xl) 
+		padding-left: calc(50% - 580px)
+		padding-right: calc(50% - 580px)
+
+	@include mediaSize(lg) 
+		padding-left: calc(50% - 360px)
+		padding-right: calc(50% - 360px)
+	
+	@include mediaSize(md) 
+		padding-left: calc(50% - 260px)
+		padding-right: calc(50% - 260px)
+
+	@include mediaSize(sm) 
+		padding: 0 15px
+	@include mediaSize(xxs) 
+		padding: 0px 0px
+	
+.centerPlus
+	@include mediaSize(xxl) 
+		padding-left: calc(50% - 595px)
+		padding-right: calc(50% - 595px)
+
+
+// pre classes
+body
+	margin: 0
+h1,h2,h3,h4,h5,h6,p 
+	margin: 0
+	cursor: default
+	user-select: none
+path
+	transition: fill .2s ease
+ul
+	padding: 0
+	margin: 0
+
+
+.absolute
+	position: absolute
+
+
+.popup
+	display: none
+	visibility: none
+	&.open
+		+flex(space-between, nowrap, center)
+	&__close
+		cursor: pointer
+
+
+
+// site top     
+
+
+header
+	+flex(flex-start,wrap,center)
+	padding-top: 65px
+	margin-bottom: 152px
+
+.header
+	
+	&__logo
+		padding-right: 56px
+		width: 100%
+		max-width: 123px
+		min-height: 45px
+	&__list
+		list-style-type: none
+		
+		+flex(space-between, wrap, center)
+		width: 100%
+		max-width: 494px
+		gap: 32px
+	&__item
+		
+	&__link
+		+pt16w500($primary-text-color)
+		text-decoration: none
+	&__phone
+		float: none
+		margin-left: auto
+		margin-right: 34px
+		+flex(flex-end,nowrap, center)
+		a
+			+pt16w500(#000000)
+			text-decoration: none
+	&__svg
+		margin-right: 18px
+
+.banner
+	+flex(space-between, nowrap, center)
+	margin-bottom: 140px
+	&__info
+		width: 100%
+		max-width: 676px
+		h1
+			+pt40w700($primary-text-color)
+			margin-bottom: 24px
+			span 
+				color: $primary-color
+	&__desc
+		+pt14w400(#000000)
+		margin-bottom: 35px
+	&__slider
+		&__item
+			+flex(flex-start, nowrap, center)
+			flex-direction: column
+			border-radius: 15px
+			img 
+				margin-bottom: 28px
+		&__text
+			width: 100%
+			max-width: 354px
+			margin-bottom: 52px
+			+pt18w600(#ffffff)
+		&__link
+			+pt16w600(#ffffff)
+			text-decoration: none
+			border-bottom: 1px solid #fff
+			align-self: flex-start
+			
+
+.megaphone
+	padding: 41px 30px 45px 30px
+	background-color: #00B856
+
+
+
+
+.about
+	+flex(space-between, nowrap, flex-start)
+	&__info
+		width: 100%
+		max-width: 512px
+		h2
+			+pt35w600(#1E0849)
+			margin-bottom: 32px
+	&__text
+		+pt22w500($primary-text-color)
+		margin-bottom: 32px
+	&__link
+		+pt18px500($primary-color)
+		float: right
+		text-decoration: none
+		border-bottom: 1px solid $primary-color
+
+	&__card
+		background: #FFFFFF
+		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1)
+		width: 100%
+		max-width: 304px
+		min-height: 208px
+		padding: 16px 24px 32px 20px
+		box-sizing: border-box
+		&__group
+			+flex(flex-end, wrap, center)
+			grid-gap:  10px 20px
+			margin-bottom: 100px
+		&__image
+			margin-bottom: 14px
+		&__text
+			width: 100%
+			max-width: 260px
+			+pt16w500($primary-text-color)
+			span
+				+pt16w600($primary-text-color)
+
+
+
+
+.marquee-w
+	position: relative
+	display: block
+	width: 100%
+	height: 140px
+
+	overflow: hidden
+.marquee
+	position: absolute
+	display: block
+	margin: auto auto
+	white-space: nowrap
+	overflow: hidden
+	min-width: 100%
+	height: 100%
+
+.marquee span	
+	display: inline-block
+	padding-left: 100%
+	+pt100w900(#c4c4c4)
+	text-align: center
+	white-space: nowrap
+	min-width: 100%
+	height: 100%
+	animation: marquee 6s linear infinite
+
+.marquee2 span
+	animation-delay: 3s
+@keyframes marquee 
+	0%
+		transform: translateX(0)
+
+	100%
+		transform: translateX(-100%)
